@@ -6,7 +6,7 @@ public class ProductsDetails {
 	private String pName;
 	private String pDetails;
 	private String pImgLink;
-	
+	private float price;
 	
 	public String getpId() {
 		return pId;
@@ -33,15 +33,22 @@ public class ProductsDetails {
 		this.pImgLink = pImgLink;
 	}
 	
-	public ProductsDetails(String pId, String pName, String pDetails, String pImgLink) {
+	public ProductsDetails() {
+		super();
+	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	public ProductsDetails(String pId, String pName, String pDetails, String pImgLink, float price) {
 		super();
 		this.pId = pId;
 		this.pName = pName;
 		this.pDetails = pDetails;
 		this.pImgLink = pImgLink;
-	}
-	public ProductsDetails() {
-		super();
+		this.price = price;
 	}
 	@Override
 	public int hashCode() {
@@ -51,6 +58,7 @@ public class ProductsDetails {
 		result = prime * result + ((pId == null) ? 0 : pId.hashCode());
 		result = prime * result + ((pImgLink == null) ? 0 : pImgLink.hashCode());
 		result = prime * result + ((pName == null) ? 0 : pName.hashCode());
+		result = prime * result + Float.floatToIntBits(price);
 		return result;
 	}
 	@Override
@@ -59,10 +67,8 @@ public class ProductsDetails {
 			return true;
 		if (obj == null)
 			return false;
-		
 		if (getClass() != obj.getClass())
 			return false;
-		
 		ProductsDetails other = (ProductsDetails) obj;
 		if (pDetails == null) {
 			if (other.pDetails != null)
@@ -73,6 +79,7 @@ public class ProductsDetails {
 			if (other.pId != null)
 				return false;
 		} else if (!pId.equals(other.pId))
+			return false;
 		if (pImgLink == null) {
 			if (other.pImgLink != null)
 				return false;
@@ -83,12 +90,9 @@ public class ProductsDetails {
 				return false;
 		} else if (!pName.equals(other.pName))
 			return false;
+		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price))
+			return false;
 		return true;
-	}
-	@Override
-	public String toString() {
-		return "ProductsDetails [pId=" + pId + ", pName=" + pName + ", pDetails=" + pDetails + ", pImgLink=" + pImgLink
-				+ "]";
 	}
 	
 }
