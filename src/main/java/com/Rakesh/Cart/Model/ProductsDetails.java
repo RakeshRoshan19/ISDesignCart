@@ -1,12 +1,18 @@
 package com.Rakesh.Cart.Model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="ProductsDetails")
+
 public class ProductsDetails {
-	
+	@Id
 	private String pId;
 	private String pName;
 	private String pDetails;
 	private String pImgLink;
 	private float price;
+	private String pCategory;
 	
 	public String getpId() {
 		return pId;
@@ -32,28 +38,35 @@ public class ProductsDetails {
 	public void setpImgLink(String pImgLink) {
 		this.pImgLink = pImgLink;
 	}
-	
-	public ProductsDetails() {
-		super();
-	}
 	public float getPrice() {
 		return price;
 	}
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public ProductsDetails(String pId, String pName, String pDetails, String pImgLink, float price) {
+	public String getpCategory() {
+		return pCategory;
+	}
+	public void setpCategory(String pCategory) {
+		this.pCategory = pCategory;
+	}
+	public ProductsDetails() {
+		super();
+	}
+	public ProductsDetails(String pId, String pName, String pDetails, String pImgLink, float price, String pCategory) {
 		super();
 		this.pId = pId;
 		this.pName = pName;
 		this.pDetails = pDetails;
 		this.pImgLink = pImgLink;
 		this.price = price;
+		this.pCategory = pCategory;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((pCategory == null) ? 0 : pCategory.hashCode());
 		result = prime * result + ((pDetails == null) ? 0 : pDetails.hashCode());
 		result = prime * result + ((pId == null) ? 0 : pId.hashCode());
 		result = prime * result + ((pImgLink == null) ? 0 : pImgLink.hashCode());
@@ -70,6 +83,11 @@ public class ProductsDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		ProductsDetails other = (ProductsDetails) obj;
+		if (pCategory == null) {
+			if (other.pCategory != null)
+				return false;
+		} else if (!pCategory.equals(other.pCategory))
+			return false;
 		if (pDetails == null) {
 			if (other.pDetails != null)
 				return false;
@@ -94,5 +112,5 @@ public class ProductsDetails {
 			return false;
 		return true;
 	}
-	
+		
 }
