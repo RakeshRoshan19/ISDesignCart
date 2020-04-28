@@ -25,15 +25,20 @@ public class ControllerRest {
 	@Autowired
 	private Services services;
 	
+	//Api for adding new cart details
 	@PostMapping("/add")
 	public Optional<CartDetails> addCart(@RequestBody UserProdutId upi) {
 		return services.addCart(upi);
 	}
 	
+	// Api for editing the cart details
 	@PutMapping("/edit")
 	public void editCart(@RequestBody UserProdutId upi){
 		services.editCart(upi);
 	}
+	
+	/* Api for getting the user's (who's email is passed in pathvariable as email) 
+	cart details and call produts api internally to get details of all products in the cart*/
 	@GetMapping("/userscart/{email}")
 	public List<ProductsDetails> usersCart(@PathVariable ("email") String email){
 		return services.usersCart(email);
